@@ -2,10 +2,10 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
-    <SafeAreaView>
-      <View className="bg-[#e2eefe] flex justify-center items-center h-full gap-2">
+    <SafeAreaView className="bg-[#e2eefe]">
+      <View className="flex justify-center items-center h-full gap-2">
         <View>
           <Text className="text-2xl font-semibold">Login into ChitChat</Text>
         </View>
@@ -27,7 +27,7 @@ export default function Login() {
           </View>
         </View>
         <View className="w-full px-16">
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <View className="mt-2 bg-[#3b82f6] rounded-full items-center flex justify-center px-4 py-2">
               <Text className="text-md text-white">Login</Text>
             </View>

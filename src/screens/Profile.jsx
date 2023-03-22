@@ -2,11 +2,14 @@ import { View, Text } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
+import Header from "../components/Header";
+import NavBar from "../components/NavBar";
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   return (
-    <SafeAreaView className="h-full">
-      <View className="h-full gap-6 flex items-center justify-center">
+    <SafeAreaView className="bg-[#e2eefe] h-full">
+      <Header />
+      <View className="h-[662px] gap-6 flex items-center justify-center">
         <View className="flex gap-4 flex-row items-center">
           <View className="h-28 w-28 bg-red-100 rounded-full"></View>
           <View>
@@ -24,6 +27,7 @@ export default function Profile() {
           <Text className="text-white">Edit Profile</Text>
         </TouchableOpacity>
       </View>
+      <NavBar navigation={navigation} />
     </SafeAreaView>
   );
 }
