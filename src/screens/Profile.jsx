@@ -8,7 +8,7 @@ import NavBar from "../components/NavBar";
 export default function Profile({ navigation }) {
   return (
     <SafeAreaView className="bg-[#e2eefe] h-full">
-      <Header />
+      <Header navigation={navigation} />
       <View className="h-[662px] gap-6 flex items-center justify-center">
         <View className="flex gap-4 flex-row items-center">
           <View className="h-28 w-28 bg-red-100 rounded-full"></View>

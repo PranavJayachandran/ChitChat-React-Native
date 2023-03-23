@@ -42,7 +42,7 @@ export default function MeetPeople({ navigation }) {
   ];
   return (
     <SafeAreaView className="h-full">
-      <Header />
+      <Header navigation={navigation} />
       <View className="h-[640px] flex items-center justify-center bg-[#e2eefe]">
         <View className="w-full px-10">
           <Text className="text-xl font-semibold">Recommendation</Text>

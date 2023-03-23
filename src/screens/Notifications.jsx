@@ -1,4 +1,10 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
@@ -62,15 +68,17 @@ export default function Notifications({ navigation }) {
   ];
   return (
     <SafeAreaView className="bg-[#e2eefe]">
-      <Header />
+      <Header navigation={navigation} />
       <View className="h-[640px]">
         <View className="px-6 mt-10">
           <Text className="text-xl">Notifications</Text>
         </View>
         <View>
-          {data.map((item) => (
-            <Notification item={item} />
-          ))}
+          <ScrollView className="h-[500px]">
+            {data.map((item) => (
+              <Notification item={item} />
+            ))}
+          </ScrollView>
         </View>
       </View>
       <NavBar navigation={navigation} />

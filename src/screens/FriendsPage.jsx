@@ -20,7 +20,7 @@ function Friend({ data }) {
     </View>
   );
 }
-export default function FriendsPage() {
+export default function FriendsPage({ navigation }) {
   const friends = [
     {
       name: "Haiasdaskjsaddskjdsklfjldskfj",
@@ -41,7 +41,7 @@ export default function FriendsPage() {
   ];
   return (
     <SafeAreaView className="h-full">
-      <Header />
+      <Header navigation={navigation} />
       <View className="flex h-[650px]  justify-center items-center gap-2">
         <View>
           <Text className="text-[#5874c5] text-2xl font-semibold">

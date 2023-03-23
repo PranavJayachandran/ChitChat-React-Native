@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Search from './src/screens/Search';
 import Notifications from './src/screens/Notifications';
 import Chat from './src/screens/Chat';
+import Chating from './src/screens/Chating';
 
 const Stack = createStackNavigator();
 
@@ -20,13 +21,14 @@ export default function App() {
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
+        <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="MeetPeople" component={MeetPeople} />
         <Stack.Screen name="Friends" component={FriendsPage} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Notifications" component={Notifications} />
-        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Chatting" component={Chating} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,7 +9,7 @@ import { Keyboard } from "react-native";
 export default function Search({ navigation }) {
   return (
     <SafeAreaView className="bg-[#e2eefe]">
-      <Header />
+      <Header navigation={navigation} />
       <View className="h-[640px]">
         <View className="flex flex-row mt-4 mx-4 items-center bg-gray-100 h-10 rounded-xl">
           <TextInput className="w-11/12 px-2 " placeholder="Search"></TextInput>
