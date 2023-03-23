@@ -27,7 +27,7 @@ export default function Login({ navigation }) {
           </View>
         </View>
         <View className="w-full px-16">
-          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <TouchableOpacity onPress={() => navigation.navigate("AddDetails")}>
             <View className="mt-2 bg-[#3b82f6] rounded-full items-center flex justify-center px-4 py-2">
               <Text className="text-md text-white">Login</Text>
             </View>
