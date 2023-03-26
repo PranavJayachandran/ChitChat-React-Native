@@ -12,27 +12,31 @@ import Notifications from './src/screens/Notifications';
 import Chat from './src/screens/Chat';
 import Chating from './src/screens/Chating';
 import AddDetails from './src/screens/AddDetails';
+import { store } from './redux/app/store'
+import { Provider } from 'react-redux'
 
 const Stack = createStackNavigator();
 
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }}>
 
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="MeetPeople" component={MeetPeople} />
-        <Stack.Screen name="Friends" component={FriendsPage} />
-        <Stack.Screen name="Search" component={Search} />
-        <Stack.Screen name="Notifications" component={Notifications} />
-        <Stack.Screen name="Chatting" component={Chating} />
-        <Stack.Screen name="AddDetails" component={AddDetails} />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="MeetPeople" component={MeetPeople} />
+          <Stack.Screen name="Friends" component={FriendsPage} />
+          <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="Notifications" component={Notifications} />
+          <Stack.Screen name="Chatting" component={Chating} />
+          <Stack.Screen name="AddDetails" component={AddDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
