@@ -4,11 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
-import { useSelector, useDispatch } from "react-redux";
 
-export default function Profile({ navigation }) {
-  const email = useSelector((state) => state.counter.email);
-  const token = useSelector((state) => state.counter.token);
+export default function People({ route, navigation }) {
   const [userData, setUserData] = useState({
     id: "",
     name: "",
@@ -20,43 +17,8 @@ export default function Profile({ navigation }) {
     unread: [],
     req: [],
   });
-  const getUser = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      email: email,
-    });
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch("http://192.168.1.38:5000/user/getUser", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        let data = {
-          id: result._id,
-          name: result.name,
-          email: result.email,
-          image: result.image,
-          bio: result.bio,
-          friends: result.friends,
-          messages: result.messages,
-          unread: result.unread,
-          req: result.req,
-        };
-        setUserData(data);
-      })
-      .catch((error) => console.log("error", error));
-  };
-
   useEffect(() => {
-    getUser();
+    setUserData(route.params.item);
   }, []);
 
   return (
@@ -79,7 +41,7 @@ export default function Profile({ navigation }) {
           <Text className="text-[#3634a9]">{userData.bio}</Text>
         </View>
         <TouchableOpacity className="px-4 py-3 rounded-xl bg-[#3634a9]">
-          <Text className="text-white">Edit Profile</Text>
+          <Text className="text-white">Add Friend</Text>
         </TouchableOpacity>
       </View>
       <NavBar navigation={navigation} />

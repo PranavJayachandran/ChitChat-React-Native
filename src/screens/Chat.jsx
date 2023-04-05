@@ -6,41 +6,56 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import { Ionicons } from "@expo/vector-icons";
 import Message from "../components/Message";
+import { useSelector } from "react-redux";
 
 export default function Chat({ navigation }) {
-  const messages = [
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
+  const [chats, setChats] = useState([]);
+  const [unique_chat, setUnique_Chat] = useState([]);
+  const token = useSelector((state) => state.counter.token);
+  const email = useSelector((state) => state.counter.email);
+  const getChats = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append("Content-Type", "application/json");
 
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
-    {
-      name: "Alex Blaze",
-    },
-  ];
+    var raw = JSON.stringify({
+      email: email,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://192.168.1.38:5000/user/getChats", requestOptions)
+      .then((response) => response.json())
+      .then((result) => setChats(result))
+      .catch((error) => console.log("error", error));
+  };
+
+  useEffect(() => {
+    getChats();
+  }, []);
+
+  useEffect(() => {
+    var chat = new Set();
+    chats.forEach((element) => {
+      chat.add(element);
+    });
+    setUnique_Chat(Array.from(chat));
+  }, [chats]);
+
+  useEffect(() => {
+    console.log("Unique", unique_chat);
+  }, []);
   return (
     <SafeAreaView className="bg-[#e2eefe]">
       <Header navigation={navigation} />
@@ -52,13 +67,15 @@ export default function Chat({ navigation }) {
           </TouchableOpacity>
         </View>
         <View>
-          {messages.map((item) => (
+          {unique_chat.map((item) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Chatting");
+                navigation.navigate("Chatting", {
+                  name: item.data.user,
+                });
               }}
             >
-              <Message item={item} />
+              <Message item={item.data} />
             </TouchableOpacity>
           ))}
         </View>
